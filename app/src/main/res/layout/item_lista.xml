@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#FFF9C4">
+
+    <TextView
+        android:id="@+id/tvItemNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Nome: João Silva"/>
+
+    <TextView
+        android:id="@+id/tvItemIdade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        tools:text="Idade: 35"/>
+
+    <TextView
+        android:id="@+id/tvItemPeso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        tools:text="Peso: 75.5 kg"/>
+
+    <TextView
+        android:id="@+id/tvItemAltura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        tools:text="Altura: 1.75 m"/>
+
+    <TextView
+        android:id="@+id/tvItemIMC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        tools:text="IMC: 24.65"/>
+
+    <TextView
+        android:id="@+id/tvItemPressao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        tools:text="Pressão Arterial: 12 por 8"/>
+
+
+</LinearLayout>
