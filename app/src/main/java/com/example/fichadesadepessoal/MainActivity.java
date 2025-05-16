@@ -7,8 +7,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fichadesadepessoal.R;
-
 public class MainActivity extends AppCompatActivity {
 
     private Button btnCadastrar;
@@ -35,6 +33,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

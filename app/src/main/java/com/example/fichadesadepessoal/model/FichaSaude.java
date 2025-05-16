@@ -7,11 +7,6 @@ public class FichaSaude {
     private double peso;
     private double altura;
     private String pressaoArterial;
-    private long dataCadastro;
-
-    public FichaSaude() {
-        this.dataCadastro = System.currentTimeMillis();
-    }
 
     public FichaSaude(String nome, int idade, double peso, double altura, String pressaoArterial) {
         this.nome = nome;
@@ -19,7 +14,9 @@ public class FichaSaude {
         this.peso = peso;
         this.altura = altura;
         this.pressaoArterial = pressaoArterial;
-        this.dataCadastro = System.currentTimeMillis();
+    }
+
+    public FichaSaude() {
     }
 
     public long getId() {
@@ -70,17 +67,15 @@ public class FichaSaude {
         this.pressaoArterial = pressaoArterial;
     }
 
-    public long getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(long dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
 
     public double calcularIMC() {
         if (altura <= 0) return 0;
-        return peso / (altura * altura);
+        if (altura < 3) {
+            return peso / (altura * altura);
+        } else {
+            double alturaEmMetros = altura / 100;
+            return peso / (alturaEmMetros * alturaEmMetros);
+        }
     }
 
     public String getClassificacaoIMC() {

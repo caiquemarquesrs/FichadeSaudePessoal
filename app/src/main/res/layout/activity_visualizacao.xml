@@ -71,4 +71,19 @@
             tools:text="Pressão Arterial: 12 por 8"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Voltar"/>
+
+    </LinearLayout>
+
 </LinearLayout>

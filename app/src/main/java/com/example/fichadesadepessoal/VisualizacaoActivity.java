@@ -1,7 +1,7 @@
 package com.example.fichadesadepessoal;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,14 +9,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fichadesadepessoal.R;
 import com.example.fichadesadepessoal.database.FichaDatabase;
 import com.example.fichadesadepessoal.model.FichaSaude;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class VisualizacaoActivity extends AppCompatActivity {
 
@@ -27,6 +23,7 @@ public class VisualizacaoActivity extends AppCompatActivity {
     private TextView tvPressao;
     private TextView tvIMC;
     private TextView tvClassificacaoIMC;
+    private Button btnVoltar;
     private FichaDatabase dbHelper;
     private FichaSaude ficha;
     private long fichaId;
@@ -37,6 +34,10 @@ public class VisualizacaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizacao);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Visualização da Ficha");
+        }
         dbHelper = new FichaDatabase(this);
         tvNome = findViewById(R.id.tvNome);
         tvIdade = findViewById(R.id.tvIdade);
@@ -45,6 +46,13 @@ public class VisualizacaoActivity extends AppCompatActivity {
         tvPressao = findViewById(R.id.tvPressao);
         tvIMC = findViewById(R.id.tvIMC);
         tvClassificacaoIMC = findViewById(R.id.tvClassificacaoIMC);
+        btnVoltar = findViewById(R.id.btnVoltar);
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         if (getIntent().hasExtra("FICHA_ID")) {
             fichaId = getIntent().getLongExtra("FICHA_ID", -1);
         } else {
@@ -56,6 +64,38 @@ public class VisualizacaoActivity extends AppCompatActivity {
                 finish();
                 return;
             }
+        }
+        carregarDados();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregarDados();
+    }
+
+    private void carregarDados() {
+        ficha = dbHelper.getFicha(fichaId);
+
+        if (ficha != null) {
+            tvNome.setText(ficha.getNome());
+            tvIdade.setText(String.valueOf(ficha.getIdade()));
+            tvPeso.setText(df.format(ficha.getPeso()) + " kg");
+            tvAltura.setText(df.format(ficha.getAltura()) + " m");
+            tvPressao.setText(ficha.getPressaoArterial());
+
+            double imc = ficha.calcularIMC();
+            tvIMC.setText(df.format(imc));
+            tvClassificacaoIMC.setText(ficha.getClassificacaoIMC());
         }
     }
 }
